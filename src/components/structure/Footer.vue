@@ -1,10 +1,10 @@
 <template>
   <div class="footer bg-dark fixed-bottom">
     <div class="links">
-      <a href="#" data-bs-toggle="modal" data-bs-target="#creditsModal">{{t('footer.credits')}}</a>
+      <a href="#" data-bs-toggle="modal" :data-bs-target="'#'+creditsModalId">{{creditsLabel}}</a>
       <span class="version">v{{buildNumber}}</span>
     </div>
-    <div>
+    <div v-if="zoomEnabled">
       <a class="zoom-icon" @click.prevent="zoomIn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -25,65 +25,38 @@
     </div>
     <div class="buttons"></div>
   </div>
-
-  <div class="modal" id="creditsModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{t('footer.credits')}}</h5>
-          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <h4><a href="https://boardgamegeek.com/boardgame/258210/blitzkrieg-world-war-two-20-minutes" target="_blank">{{t('gameTitle')}}</a></h4>
-          <dl>
-            <dt>Game design</dt>
-            <dd>Paolo Mori</dd>
-            <dt>Solo mode design</dt>
-            <dd>Dávid Turczi</dd>
-            <dt>Development and testing</dt>
-            <dd>Nick Shaw</dd>
-            <dt>Graphic design</dt>
-            <dd>Nick Avallone</dd>
-            <dt>Publisher</dt>
-            <dd><a href="https://www.pscgames.co.uk/" target="_blank">PSC Games</a></dd>
-          </dl>
-          <h4 class="border-top pt-3">{{appTitle}}</h4>
-          <dl>
-            <dt>Application Development</dt>
-            <dd>Stefan Seifert</dd>
-            <dt>Version</dt>
-            <dd>{{buildNumber}}</dd>
-            <dt>Source Code (Apache-2.0 License)</dt>
-            <dd><a href="https://github.com/brdgm/blitzkrieg-solo-helper" target="_blank">https://github.com/brdgm/blitzkrieg-solo-helper</a></dd>
-          </dl>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.close')}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'Footer',
+  props: {
+    buildNumber: {
+      type: String,
+      require: true
+    },
+    creditsLabel: {
+      type: String,
+      require: true
+    },
+    creditsModalId: {
+      type: String,
+      require: true
+    },
+    zoomEnabled: {
+      type: Boolean,
+      require: false
+    }
+  },
   emits: {
     zoomFontSize(payload: { baseFontSize: number }) {
       return payload.baseFontSize > 0;
     }
   },
-  setup() {
-    const { t } = useI18n()
-    return { t }
-  },
   data() {
     return {
-      buildNumber: process.env.VUE_APP_BUILD_NUMBER || '',
-      appTitle: process.env.VUE_APP_TITLE,
       baseFontSize: 1
     }
   },
@@ -140,9 +113,6 @@ export default defineComponent({
     flex-grow: 1;
     width: 10rem;
   }
-}
-.modal dt {
-  font-weight: bold;
 }
 .zoom-icon {
   display: inline;
