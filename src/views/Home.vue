@@ -1,7 +1,5 @@
 <template>
-
   <h1>brdgm-commons</h1>
-
 </template>
 
 <script lang="ts">
