@@ -1,0 +1,18 @@
+{
+  "gameTitle": "brdgm-commons",
+  "notfound": {
+    "title": "Not Found"
+  },
+  "action": {
+    "abortGame": "Abort Game",
+    "abortGameConfirm": "Aborting the running game - are you sure?",
+    "finishGame": "Finish Game",
+    "finishGameConfirm": "Finishing this game - are you sure?",
+    "cancel": "Cancel",
+    "back": "Back",
+    "close": "Close"
+  },
+  "footer": {
+    "credits": "Credits"
+  }
+}
