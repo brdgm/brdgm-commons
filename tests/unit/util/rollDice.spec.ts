@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import rollDice from '@/util/rollDice'
+import rollDice from '@/util/random/rollDice'
 
 describe('rollDice', () => {
   it('D6', () => {

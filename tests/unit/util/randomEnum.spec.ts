@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import randomEnum from '@/util/randomEnum'
+import randomEnum from '@/util/random/randomEnum'
 
 describe('randomEnum', () => {
   it('int enum', () => {
