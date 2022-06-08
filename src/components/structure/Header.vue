@@ -25,7 +25,10 @@ import { useI18n } from 'vue-i18n'
 export default defineComponent({
   name: 'Header',
   props: {
-    title: String
+    title: {
+      type: String,
+      require: true
+    }
   },
   emits: {
     setLocale(payload: { language: string }) {
