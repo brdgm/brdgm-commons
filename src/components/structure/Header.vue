@@ -5,7 +5,7 @@
       <div class="title">brdgm.me</div>
     </a>
 
-    <div class="gameTitle">{{ t('gameTitle') }}</div>
+    <div class="gameTitle">{{title}}</div>
 
     <div class="langSelector">
       <button class="btn btn-secondary btn-sm dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,12 +24,30 @@ import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'Header',
+  props: {
+    title: {
+      type: String,
+      require: true
+    }
+  },
+  emits: {
+    setLocale(payload: { language: string }) {
+      return payload.language.length > 0
+    }
+  },
   setup() {
-    const { t, locale, availableLocales } = useI18n({
+    const { locale, availableLocales } = useI18n({
       inheritLocale: true,
       useScope: 'global'
     })
-    return { t, locale, availableLocales }
+    return { locale, availableLocales }
+  },
+  methods: {
+    setLocale(lang: string) {
+      this.$emit('setLocale', {
+        language: lang
+      })
+    }
   }
 })
 </script>

@@ -1,22 +1,22 @@
 <template>
   <div class="end-game-buttons">
-    <router-link v-if="backButtonRouteTo" :to="backButtonRouteTo" class="btn btn-secondary btn-sm me-2">{{t('action.back')}}</router-link>
-    <button v-if="endGameButtonType" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#endGameModal">{{t('action.' + endGameButtonType)}}</button>
+    <router-link v-if="backButtonRouteTo && backLabel" :to="backButtonRouteTo" class="btn btn-secondary btn-sm me-2">{{backLabel}}</router-link>
+    <button v-if="endGameLabel" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#endGameModal">{{endGameLabel}}</button>
   </div>
 
-  <div v-if="endGameButtonType" class="modal" id="endGameModal" tabindex="-1">
+  <div v-if="endGameLabel" class="modal" id="endGameModal" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">{{t('action.' + endGameButtonType)}}</h5>
+          <h5 class="modal-title">{{endGameLabel}}</h5>
           <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>{{t('action.' + endGameButtonType + 'Confirm')}}</p>
+          <p>{{endGameConfirmMessage}}</p>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-danger" data-bs-dismiss="modal">{{t('action.' + endGameButtonType)}}</button>
-          <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.cancel')}}</button>
+          <button class="btn btn-danger" @click="endGame" data-bs-dismiss="modal">{{endGameLabel}}</button>
+          <button class="btn btn-secondary" data-bs-dismiss="modal">{{cancelLabel}}</button>
         </div>
       </div>
     </div>
@@ -25,23 +25,36 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n'
 
 export default defineComponent({
   name: 'FooterButtons',
-  setup() {
-    const { t } = useI18n()
-    return { t }
-  },
   props: {
-    endGameButtonType: {
-      type: String,  /* Type of end game button <X> (i18n action.<X> and action.<X>Confirm needs to be present); button is hidden when not set */
+    backLabel: {
+      type: String,
       required: false
     },
     backButtonRouteTo: {
       type: String,  /* router-link to */
       required: false
     },
+    endGameLabel: {
+      type: String,
+      required: false
+    },
+    endGameConfirmMessage: {
+      type: String,
+      required: false
+    },
+    cancelLabel: {
+      type: String,
+      required: false
+    }
+  },
+  emits: ['endGame'],
+  methods: {
+    endGame() {
+      this.$emit('endGame')
+    }
   }
 })
 </script>
