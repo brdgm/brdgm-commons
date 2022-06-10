@@ -1,0 +1,18 @@
+{
+  "gameTitle": "brdgm-commons",
+  "notfound": {
+    "title": "Nicht Gefunden"
+  },
+  "action": {
+    "abortGame": "Spiel abbrechen",
+    "abortGameConfirm": "Das aktuelle Spiel wird abgebrochen - bist Du sicher?",
+    "finishGame": "Spiel beenden",
+    "finishGameConfirm": "Dieses Spiel wird beendet - bist Du sicher?",
+    "cancel": "Abbrechen",
+    "back": "Zurück",
+    "close": "Schließen"
+  },
+  "footer": {
+    "credits": "Credits"
+  }
+}
