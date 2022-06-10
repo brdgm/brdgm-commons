@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import rollDice from '@/util/random/rollDice'
 
-describe('rollDice', () => {
+describe('util/random/rollDice', () => {
   it('D6', () => {
     const value = rollDice(6)
 

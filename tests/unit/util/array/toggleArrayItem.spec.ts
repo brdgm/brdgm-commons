@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import toggleArrayItem from '@/util/array/toggleArrayItem'
 
-describe('toggleArrayItem', () => {
+describe('util/array/toggleArrayItem', () => {
   it('toggleExist', () => {
     const array = [SampleEnum.ONE,SampleEnum.TWO]
     toggleArrayItem(array, SampleEnum.TWO)
