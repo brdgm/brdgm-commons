@@ -10,7 +10,8 @@
     "finishGameConfirm": "Dieses Spiel wird beendet - bist Du sicher?",
     "cancel": "Abbrechen",
     "back": "Zurück",
-    "close": "Schließen"
+    "close": "Schließen",
+    "backToHome": "Zurück zum Anfang",
   },
   "footer": {
     "credits": "Credits"

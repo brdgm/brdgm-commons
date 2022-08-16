@@ -10,7 +10,8 @@
     "finishGameConfirm": "Finishing this game - are you sure?",
     "cancel": "Cancel",
     "back": "Back",
-    "close": "Close"
+    "close": "Close",
+    "backToHome": "Back to Home"
   },
   "footer": {
     "credits": "Credits"
