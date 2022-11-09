@@ -1,12 +1,12 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Home from '@/views/Home.vue'
+import AppHome from '@/views/AppHome.vue'
 import NotFound from '@/views/NotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'AppHome',
+    component: AppHome
   },
   {
     path: '/:pathMatch(.*)*',

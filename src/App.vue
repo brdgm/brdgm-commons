@@ -1,11 +1,11 @@
 <template>
-  <Header :title="t('gameTitle')" @set-locale="setLocale($event.language)"/>
+  <AppHeader :title="t('gameTitle')" @set-locale="setLocale($event.language)"/>
 
   <div id="content-container" class="container-fluid mt-5 mb-5">
     <router-view :key="$route.fullPath"/>
   </div>
 
-  <Footer :build-number="buildNumber" :credits-label="t('footer.credits')" credits-modal-id="creditsModal" zoom-enabled @zoomFontSize="zoomFontSize"/>
+  <AppFooter :build-number="buildNumber" :credits-label="t('footer.credits')" credits-modal-id="creditsModal" zoom-enabled @zoomFontSize="zoomFontSize"/>
 
   <div class="modal" id="creditsModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
@@ -37,14 +37,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import Header from '@/components/structure/Header.vue'
-import Footer from '@/components/structure/Footer.vue'
+import AppHeader from '@/components/structure/AppHeader.vue'
+import AppFooter from '@/components/structure/AppFooter.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    Header,
-    Footer
+    AppHeader,
+    AppFooter
   },
   setup() {
     const { t, locale } = useI18n({
