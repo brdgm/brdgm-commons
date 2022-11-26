@@ -1,7 +1,7 @@
 import getPrioritizedEnumValues from '@/util/enum/getPrioritizedEnumValues'
 import { expect } from 'chai'
 
-describe('util/getPrioritizedEnumValues', () => {
+describe('util/enum/getPrioritizedEnumValues', () => {
   it('StringEnum-one', () => {
     expect(getPrioritizedEnumValues(StringEnum,StringEnum.ONE)).to.eql([StringEnum.ONE,StringEnum.TWO,StringEnum.THREE])
   })
