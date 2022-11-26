@@ -1,6 +1,9 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 import AppHome from '@/views/AppHome.vue'
 import NotFound from '@/views/NotFound.vue'
+import createRouter from '@/util/router/createRouter'
+
+const LOCALSTORAGE_KEY = process.env.VUE_APP_LOCALSTORAGE_KEY_PREFIX + "route"
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,9 +18,4 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
-
-export default router
+export default createRouter(routes, LOCALSTORAGE_KEY, 'AppHome')
