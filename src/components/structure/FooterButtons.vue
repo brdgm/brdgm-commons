@@ -4,30 +4,27 @@
     <button v-if="endGameLabel" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#endGameModal">{{endGameLabel}}</button>
   </div>
 
-  <div v-if="endGameLabel" class="modal" id="endGameModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{endGameLabel}}</h5>
-          <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>{{endGameConfirmMessage}}</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-danger" @click="endGame" data-bs-dismiss="modal">{{endGameLabel}}</button>
-          <button class="btn btn-secondary" data-bs-dismiss="modal">{{cancelLabel}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <ModalDialog v-if="endGameLabel" id="endGameModal" :title="endGameLabel">
+    <template #body>
+      <p>{{endGameConfirmMessage}}</p>
+    </template>
+    <template #footer>
+      <button class="btn btn-danger" @click="endGame" data-bs-dismiss="modal">{{endGameLabel}}</button>
+      <button class="btn btn-secondary" data-bs-dismiss="modal">{{cancelLabel}}</button>
+    </template>
+  </ModalDialog>
+
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import ModalDialog from '@/components/structure/ModalDialog.vue'
 
 export default defineComponent({
   name: 'FooterButtons',
+  components: {
+    ModalDialog
+  },
   props: {
     backLabel: {
       type: String,
