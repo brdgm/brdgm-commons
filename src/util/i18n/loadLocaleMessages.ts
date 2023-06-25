@@ -1,4 +1,4 @@
-import { LocaleMessages, VueMessageType } from "vue-i18n"
+import { LocaleMessages, VueMessageType } from 'vue-i18n'
 
 /**
  * Load locale messages
