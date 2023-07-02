@@ -1,4 +1,4 @@
-import getAllEnumValues from "./getAllEnumValues"
+import getAllEnumValues from './getAllEnumValues'
 
 /**
  * Get list of enum values starting with the prioritized one keeping the overall order.

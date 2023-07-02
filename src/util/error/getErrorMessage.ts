@@ -1,4 +1,4 @@
-import TranslatableError from "./TranslatableError"
+import TranslatableError from './TranslatableError'
 
 /**
  * Get error message for error

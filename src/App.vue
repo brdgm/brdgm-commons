@@ -39,6 +39,7 @@ import { useI18n } from 'vue-i18n'
 import AppHeader from '@/components/structure/AppHeader.vue'
 import AppFooter from '@/components/structure/AppFooter.vue'
 import ModalDialog from './components/structure/ModalDialog.vue'
+import { version, description } from '@/../package.json'
 
 export default defineComponent({
   name: 'App',
@@ -65,8 +66,8 @@ export default defineComponent({
   },
   data() {
     return {
-      buildNumber: process.env.VUE_APP_BUILD_NUMBER || '',
-      appTitle: process.env.VUE_APP_TITLE,
+      buildNumber: version,
+      appTitle: description,
       baseFontSize: 1
     }
   },
@@ -76,6 +77,7 @@ export default defineComponent({
 <style lang="scss">
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
 @import "bootstrap/scss/utilities";
 #content-container {

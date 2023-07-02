@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from "vue-router"
+import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router'
 
 /**
  * Create a vue router with web hash history.
