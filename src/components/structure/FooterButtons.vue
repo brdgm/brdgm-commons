@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ModalDialog from '@/components/structure/ModalDialog.vue'
+import ModalDialog from './ModalDialog.vue'
 
 export default defineComponent({
   name: 'FooterButtons',
