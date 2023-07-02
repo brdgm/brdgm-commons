@@ -9,7 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
     VueI18nPlugin({
-      include: [path.resolve(__dirname, './src/locales/**')]
+      include: [path.resolve(__dirname, './src/locales/**')],
+      strictMessage: false
     })
   ],
   resolve: {
@@ -19,5 +20,8 @@ export default defineConfig({
   },
   server: {
     port: 8080
+  },
+  preview: {
+    port: 8081
   }
 })
