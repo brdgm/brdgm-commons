@@ -48,6 +48,10 @@ export default defineComponent({
     zoomEnabled: {
       type: Boolean,
       require: false
+    },
+    baseFontSize: {
+      type: Number,
+      require: false
     }
   },
   emits: {
@@ -57,30 +61,30 @@ export default defineComponent({
   },
   data() {
     return {
-      baseFontSize: 1
+      currentBaseFontSize: this.baseFontSize ?? 1.0
     }
   },
   computed: {
     zoomPercent() : string {
-      return Math.floor(this.baseFontSize * 100) + '%'
+      return Math.floor(this.currentBaseFontSize * 100) + '%'
     }
   },
   methods: {
     zoomIn() {
-      if (this.baseFontSize < 3) {
-        this.baseFontSize += 0.1
+      if (this.currentBaseFontSize < 3) {
+        this.currentBaseFontSize += 0.1
       }
-      this.$emit('zoomFontSize', { baseFontSize: this.baseFontSize })
+      this.$emit('zoomFontSize', { baseFontSize: this.currentBaseFontSize })
     },
     zoomOut() {
-      if (this.baseFontSize > 0.51) {
-        this.baseFontSize -= 0.1
+      if (this.currentBaseFontSize > 0.51) {
+        this.currentBaseFontSize -= 0.1
       }
-      this.$emit('zoomFontSize', { baseFontSize: this.baseFontSize })
+      this.$emit('zoomFontSize', { baseFontSize: this.currentBaseFontSize })
     },
     zoomReset() {
-      this.baseFontSize = 1
-      this.$emit('zoomFontSize', { baseFontSize: this.baseFontSize })
+      this.currentBaseFontSize = 1
+      this.$emit('zoomFontSize', { baseFontSize: this.currentBaseFontSize })
     }
   }
 })

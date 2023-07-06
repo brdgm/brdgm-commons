@@ -7,16 +7,6 @@
 
   <AppFooter :build-number="buildNumber" :credits-label="t('footer.credits')" credits-modal-id="creditsModal" zoom-enabled @zoomFontSize="zoomFontSize"/>
 
-  <ModalDialog id="serviceWorkerUpdatedRefresh" :title="t('serviceWorkerUpdatedRefresh.title')">
-    <template #body>
-      <p v-html="t('serviceWorkerUpdatedRefresh.notice')"></p>
-    </template>
-    <template #footer>
-      <button class="btn btn-primary" data-bs-dismiss="modal" @click="$router.go(0)">{{t('serviceWorkerUpdatedRefresh.title')}}</button>
-      <button class="btn btn-secondary" data-bs-dismiss="modal">{{t('action.close')}}</button>
-    </template>
-  </ModalDialog>
-
   <ModalDialog id="creditsModal" :title="t('footer.credits')">
     <template #body>
       <h4>{{appTitle}}</h4>
