@@ -15,4 +15,8 @@ describe('util/random/rollDice', () => {
     expect(value).greaterThanOrEqual(1)
     expect(value).lessThanOrEqual(20)
   })
+
+  it('D0', () => {
+    expect(() => rollDice(0)).to.throw(Error)
+  })
 })

@@ -3,6 +3,9 @@
  * @param maxValue Max. dice value
  * @returns Dice value
  */
-export default function(maxValue: number) : number {
+export default function rollDice(maxValue: number) : number {
+  if (maxValue < 1) {
+    throw new Error(`Unable to roll a dice ${maxValue}`)
+  }
   return Math.floor(Math.random() * maxValue) + 1
 }
