@@ -45,12 +45,12 @@ export interface ServiceWorkerOptions {
   /**
    * Default: 8 hours.
    */
-  checkUpdateIntervalSeconds: number,
+  checkUpdateIntervalSeconds?: number,
 
   /**
    * ID for modal to be displayed when a new version of the app is available.
    * Default: 'serviceWorkerUpdatedRefresh'
    */
-  modalServiceWorkerUpdateRefreshId: string
+  modalServiceWorkerUpdateRefreshId?: string
 
 }
