@@ -61,6 +61,7 @@ export default defineComponent({
   position: fixed;
   right: 0;
   bottom: 0;
-  z-index: 5000;
+  /* Position over fixed footer (but not above Modal) */
+  z-index: 1031;
 }
 </style>
