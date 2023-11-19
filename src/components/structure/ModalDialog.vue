@@ -5,7 +5,13 @@
        'modal-dialog-scrollable': scrollable,
        'modal-sm': sizeSm,
        'modal-lg': sizeLg,
-       'modal-xl': sizeXl
+       'modal-xl': sizeXl,
+       'modal-fullscreen': fullscreen,
+       'modal-fullscreen-sm-down': fullscreenSmDown,
+       'modal-fullscreen-md-down': fullscreenMdDown,
+       'modal-fullscreen-lg-down': fullscreenLgDown,
+       'modal-fullscreen-xl-down': fullscreenXlDown,
+       'modal-fullscreen-xxl-down': fullscreenXxlDown
     }">
       <div class="modal-content">
         <div class="modal-header">
@@ -64,6 +70,30 @@ export default defineComponent({
       required: false
     },
     sizeXl: {
+      type: Boolean,
+      required: false
+    },
+    fullscreen: {
+      type: Boolean,
+      required: false
+    },
+    fullscreenSmDown: {
+      type: Boolean,
+      required: false
+    },
+    fullscreenMdDown: {
+      type: Boolean,
+      required: false
+    },
+    fullscreenLgDown: {
+      type: Boolean,
+      required: false
+    },
+    fullscreenXlDown: {
+      type: Boolean,
+      required: false
+    },
+    fullscreenXxlDown: {
       type: Boolean,
       required: false
     },
