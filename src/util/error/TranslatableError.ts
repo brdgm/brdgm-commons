@@ -11,7 +11,7 @@ export default class TranslatableError extends Error {
     super(internalMessage);
     this._key = key
     this._named = named ?? {}
-    this._plural = plural || 0
+    this._plural = plural ?? 0
   }
 
   public get key() : string {
