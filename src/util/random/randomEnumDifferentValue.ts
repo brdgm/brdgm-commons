@@ -1,4 +1,4 @@
-import randomEnum from "./randomEnum"
+import randomEnum from './randomEnum'
 
 /**
  * Gets a random enum value from all available enums.

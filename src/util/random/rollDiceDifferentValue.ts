@@ -1,4 +1,4 @@
-import rollDice from "./rollDice"
+import rollDice from './rollDice'
 
 /**
  * Rolls a dice, and ensures to return a different value than the given current value.
