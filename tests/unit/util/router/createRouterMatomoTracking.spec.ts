@@ -10,7 +10,7 @@ describe('util/router/createRouter', () => {
         name: 'AppHome',
         component: defineComponent({})
       }
-    ], 'dummy-local-storage-key', 'dummy-app-deploy-name', 'AppHome')
+    ], 'dummy-local-storage-key', 'dummy-app-deploy-name', '1.0.0', 'AppHome')
 
     expect(router.getRoutes().length).to.eq(1)
   })
