@@ -11,20 +11,25 @@ declare let _paq: any;  // eslint-disable-line @typescript-eslint/no-explicit-an
  * @param routes Routes
  * @param localStorageKey Key to store the route name in
  * @param appDeployName URL name of the deployed app
+ * @param appVersion App version
  * @param homeRouteName Name of the home route
  * @returns Router
  */
 export default function(routes: Readonly<RouteRecordRaw[]>,
     localStorageKey : string,
     appDeployName : string,
+    appVersion : string,
     homeRouteName : string) : Router {
 
   const router = createRouter(routes, localStorageKey, homeRouteName)
   router.afterEach(to => {
     if (_paq) {
-      // track page view with matomo      
-      _paq.push(['setCustomUrl', `/${appDeployName}${to.fullPath}`]);
-      _paq.push(['trackPageView']);
+      // track page view with matomo
+      _paq.push(['deleteCustomDimension', 1])
+      _paq.push(['setCustomDimension', 1, appDeployName])  // app
+      _paq.push(['setCustomDimension', 2, `${appDeployName} ${appVersion}`])  // appVersion
+      _paq.push(['setCustomUrl', `/${appDeployName}${to.fullPath}`])
+      _paq.push(['trackPageView'])
     }
   })
   return router
