@@ -56,7 +56,7 @@ export default defineComponent({
   },
   emits: {
     zoomFontSize(payload: { baseFontSize: number }) {
-      return payload.baseFontSize > 0;
+      return payload.baseFontSize > 0
     }
   },
   data() {

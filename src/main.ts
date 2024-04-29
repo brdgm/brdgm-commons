@@ -9,4 +9,4 @@ import 'bootstrap'
 createApp(App)
   .use(router)
   .use(i18n)
-  .mount('#app');
+  .mount('#app')

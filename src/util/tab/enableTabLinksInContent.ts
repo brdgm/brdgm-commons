@@ -11,7 +11,7 @@ import { Tab } from 'bootstrap'
 export default function(parent : HTMLElement) : void {
   parent.querySelectorAll('a[data-custom-toggle="tab"]').forEach(anchor => {
     anchor.addEventListener('click', event => {
-      event.preventDefault();
+      event.preventDefault()
       const target = anchor.getAttribute('href')
       if (target) {
         const tabElement = parent.querySelector(target)
