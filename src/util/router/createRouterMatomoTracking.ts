@@ -1,5 +1,5 @@
-import { RouteRecordRaw, Router } from "vue-router"
-import createRouter from "./createRouter"
+import { RouteRecordRaw, Router } from 'vue-router'
+import createRouter from './createRouter'
 
 declare let _paq: any;  // eslint-disable-line @typescript-eslint/no-explicit-any
 
