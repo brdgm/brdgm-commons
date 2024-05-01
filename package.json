@@ -1,7 +1,6 @@
 {
   "name": "@brdgm/brdgm-commons",
-  "version": "1.6.2",
-  "private": true,
+  "version": "1.6.3",
   "description": "brdgm-commons",
   "type": "module",
   "scripts": {
