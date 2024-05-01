@@ -1,7 +1,8 @@
 {
   "name": "@brdgm/brdgm-commons",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "brdgm-commons",
+  "repository": "github:brdgm/brdgm-commons",
   "type": "module",
   "scripts": {
     "dev": "vite",
