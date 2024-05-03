@@ -1,0 +1,86 @@
+name: Release and Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run test:unit
+      - run: npm run build
+
+  release-and-publish-npm-registry:
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Read properties from package.json
+        id: package_json
+        uses: zoexx/github-action-json-file-properties@1.0.6
+        with:
+          file_path: package.json
+
+      - name: set git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+        shell: bash
+
+      - name: Install git flow extensions
+        run: |
+          sudo apt-get install git-flow
+        shell: bash
+
+      - run: git flow init --defaults        
+        shell: bash
+
+      - run: git flow release start ${{ steps.package_json.outputs.version }}
+        shell: bash
+
+      - run: git flow release finish ${{ steps.package_json.outputs.version }} --push --message "Release"
+        shell: bash
+
+      - run: npm ci
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: set next version
+        run: |
+          npm --no-git-tag-version version patch
+          git config user.name "GitHub Actions"
+          git config user.email noreply@github.com
+          git add package.json package-lock.json
+          git commit --message "set next version"
+          git push
+        shell: bash
+
+      - uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.package_json.outputs.version }}
+          generateReleaseNotes: true
