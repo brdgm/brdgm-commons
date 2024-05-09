@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import randomEnumDifferentValue from '@/util/random/randomEnumDifferentValue'
 
-describe('util/random/randomEnumDifferentValue.spec', () => {
+describe('util/random/randomEnumDifferentValue', () => {
   it('int enum', () => {
     const value = randomEnumDifferentValue(IntEnum, IntEnum.TWO)
 
@@ -16,12 +16,22 @@ describe('util/random/randomEnumDifferentValue.spec', () => {
     expect(value).to.not.eq(StringEnum.THREE)
   })
 
+  it('string enum multi', () => {
+    const value = randomEnumDifferentValue(StringEnum, StringEnum.THREE, StringEnum.TWO)
+
+    expect(value).to.eq(StringEnum.ONE)
+  })
+
   it('single value int enum', () => {
     expect(() => randomEnumDifferentValue(SingleValueIntEnum, SingleValueIntEnum.ONE)).to.throw(Error)
   })
 
   it('single value string enum', () => {
     expect(() => randomEnumDifferentValue(SingleValueStringEnum, SingleValueStringEnum.ONE)).to.throw(Error)
+  })
+
+  it('multi-too-much-current-values', () => {
+    expect(() => randomEnumDifferentValue(StringEnum, StringEnum.ONE, StringEnum.TWO, StringEnum.THREE)).to.throw(Error)
   })
 })
 
