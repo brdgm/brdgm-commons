@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import randomEnumDifferentValue from '@/util/random/randomEnumDifferentValue'
 
-describe('util/random/randomEnumDifferentValue.spec', () => {
+describe('util/random/randomEnumDifferentValue', () => {
   it('int enum', () => {
     const value = randomEnumDifferentValue(IntEnum, IntEnum.TWO)
 

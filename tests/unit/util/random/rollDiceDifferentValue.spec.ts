@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import rollDiceDifferentValue from '@/util/random/rollDiceDifferentValue'
 
-describe('util/random/rollDice', () => {
+describe('util/random/rollDiceDifferentValue', () => {
   it('D6', () => {
     for (let currentValue=1; currentValue<=6; currentValue++) {
       const value = rollDiceDifferentValue(6, currentValue)
