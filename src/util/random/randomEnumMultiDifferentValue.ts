@@ -1,0 +1,9 @@
+/**
+ * Gets multiple random enum values from all available enums.
+ * @param anEnum Enum type
+ * @param count Number of random values to return
+ * @returns Random enum values
+ */
+export default function randomEnumMultiDifferentValue<T extends Record<string, unknown>>(anEnum: T, count: number): T[keyof T][] {
+  return []
+}
