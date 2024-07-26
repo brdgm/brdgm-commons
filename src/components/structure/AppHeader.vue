@@ -59,6 +59,9 @@ export default defineComponent({
   flex-flow: row nowrap;
   align-items: center;
   .logo {
+    display: inline;
+    flex-grow: 1;
+    white-space: nowrap;
     .icon {
       width: 1.5rem;
       height: 1.5rem;
@@ -73,9 +76,6 @@ export default defineComponent({
       margin-right: 1rem;
       display: inline;
     }
-    display: inline;
-    flex-grow: 1;
-    white-space: nowrap;
   }
   a.logo, a.logo:hover, a.logo:visited, a.logo:active {
     text-decoration: none;
