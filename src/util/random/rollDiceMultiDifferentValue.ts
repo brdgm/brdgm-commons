@@ -1,4 +1,4 @@
-import rollDiceDifferentValue from "./rollDiceDifferentValue"
+import rollDiceDifferentValue from './rollDiceDifferentValue'
 
 /**
  * Rolls a dice and returns multiple different values.
