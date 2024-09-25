@@ -1,4 +1,4 @@
-import randomEnumDifferentValue from "./randomEnumDifferentValue"
+import randomEnumDifferentValue from './randomEnumDifferentValue'
 
 /**
  * Gets multiple random enum values from all available enums.
