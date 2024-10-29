@@ -7,6 +7,7 @@ import { setIntervalAsync } from 'set-interval-async'
 export default function onRegisteredSWCheckForUpdate(swScriptUrl : string, registration : ServiceWorkerRegistration|undefined,
     checkForNewVersionsIntervalSeconds: number) {
   const checkForNewVersionsIntervalMilliseconds = checkForNewVersionsIntervalSeconds * 1000
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   registration && setIntervalAsync(async () => {
     if (!(!registration.installing && navigator)) {
       return
