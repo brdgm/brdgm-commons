@@ -3,6 +3,9 @@ name: Release and Publish
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,6 +29,7 @@ jobs:
     permissions:
       id-token: write
       contents: write
+      pull-requests: read
 
     steps:
       - uses: actions/checkout@v4
@@ -79,8 +83,12 @@ jobs:
           git push
         shell: bash
 
-      - uses: ncipollo/release-action@v1
+      - uses: release-drafter/release-drafter@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          disable-autolabeler: true
+          name: ${{ steps.package_json.outputs.version }}
           tag: ${{ steps.package_json.outputs.version }}
-          generateReleaseNotes: true
+          version: ${{ steps.package_json.outputs.version }}
+          publish: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
