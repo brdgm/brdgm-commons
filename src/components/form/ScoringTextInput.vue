@@ -49,12 +49,11 @@ export default defineComponent({
 const digitsPlusWhitespaceRegex = /^(\d|\+|\s)*$/;
 
 function evaluateNumberOrSum(stringValue : string|undefined) : number|undefined {
-  if (stringValue != undefined && digitsPlusWhitespaceRegex.test(stringValue)) {
-    const result = stringValue.split('+')
+  if (stringValue != undefined && stringValue.trim() != '' && digitsPlusWhitespaceRegex.test(stringValue)) {
+    return stringValue.split('+')
         .map(value => value.trim())
         .map(value => value == '' ? 0 : parseInt(value))
         .reduce((acc, value) => acc + value, 0)
-    return result
   }
   return undefined
 }
