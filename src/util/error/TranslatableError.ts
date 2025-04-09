@@ -1,8 +1,8 @@
 export default class TranslatableError extends Error {
 
-  private _key : string
-  private _named : Record<string, unknown>
-  private _plural : number
+  private readonly _key : string
+  private readonly _named : Record<string, unknown>
+  private readonly _plural : number
 
   constructor(internalMessage : string, key : string)
   constructor(internalMessage : string, key : string, named : Record<string, unknown>)

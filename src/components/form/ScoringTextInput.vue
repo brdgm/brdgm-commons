@@ -1,5 +1,7 @@
 <template>
-  <input type="text" v-model="stringValue" @change="inputChange" @focus="inputSelectAll" @keydown="suppressInvalidKeys"/>
+  <input type="text" v-model="stringValue"
+      @change="inputChange" @focus="inputSelectAll" @keydown="suppressInvalidKeys"
+      :class="{glow1: glow==1, glow2: glow==2}"/>
 </template>
 
 <script lang="ts">
@@ -16,6 +18,16 @@ export default defineComponent({
     modelValue: {
       type: Number,
       required: false
+    },
+    max: {
+      type: Number,
+      required: false,
+      default: 9999
+    },
+    min: {
+      type: Number,
+      required: false,
+      default: 0
     }
   },
   setup(props) {
@@ -23,11 +35,22 @@ export default defineComponent({
     if (props.modelValue) {
       stringValue.value = props.modelValue.toString()
     }
-    return { stringValue }
+    const glow = ref(0)
+    return { stringValue, glow }
   },
   methods: {
     inputChange() : void {
-      const value = evaluateNumberOrSum(this.stringValue)
+      let value = evaluateNumberOrSum(this.stringValue)
+      if (value) {
+        if (value > this.max) {
+          value = this.max
+          this.triggerValidationGlow()
+        }
+        else if (value < this.min) {
+          value = this.min
+          this.triggerValidationGlow()
+        }
+      }
       this.stringValue = value?.toString()
       this.$emit('update:modelValue', value)
     },
@@ -36,25 +59,61 @@ export default defineComponent({
       input.select()
     },
     suppressInvalidKeys(event: KeyboardEvent) : void {
-      const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab', 'Enter', ' ']
+      const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab', 'Enter', ' ', '-', '+']
       const isNumberKey = event.key >= '0' && event.key <= '9'
-      const isPlusKey = event.key == '+'
-      if (!isNumberKey && !isPlusKey && !allowedKeys.includes(event.key)) {
+      if (!isNumberKey && !allowedKeys.includes(event.key)) {
         event.preventDefault()
+      }
+    },
+    triggerValidationGlow() : void {
+      // we have to trigger two different CSS classes to restart the glow animation each time
+      if (this.glow < 2) {
+        this.glow++
+      }
+      else {
+        this.glow = 1
       }
     }
   }
 })
 
-const digitsPlusWhitespaceRegex = /^(\d|\+|\s)*$/;
+const digitsOperatorsWhitespaceRegex = /^([\d+\-\s])*$/;
 
-function evaluateNumberOrSum(stringValue : string|undefined) : number|undefined {
-  if (stringValue != undefined && stringValue.trim() != '' && digitsPlusWhitespaceRegex.test(stringValue)) {
-    return stringValue.split('+')
-        .map(value => value.trim())
-        .map(value => value == '' ? 0 : parseInt(value))
-        .reduce((acc, value) => acc + value, 0)
+function evaluateNumberOrSum(stringValue: string | undefined): number | undefined {
+  if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
+    try {
+      // Evaluate the expression safely
+      return stringValue
+        .replace(/\s+/g, '') // Remove all whitespace from the string
+        .split(/(?=[+-])/) // Split by operators while preserving them
+        .map(value => parseInt(value, 10)) // Convert each part to a number
+        .reduce((acc, value) => acc + value, 0); // Sum up all parts
+    }
+    catch {
+      return undefined;
+    }
   }
-  return undefined
+  return undefined;
 }
 </script>
+
+<style lang="scss" scoped>
+.glow1 {
+  animation-name: glow1;
+  animation-duration: 0.25s;
+}
+.glow2 {
+  animation-name: glow2;
+  animation-duration: 0.25s;
+}
+@keyframes glow1 {
+  0% { box-shadow:0 0 0 red;}
+  50% { box-shadow:0 0 15px red; }
+  100% { box-shadow:0 0 0 red; }
+}
+@keyframes glow2 {
+  0% { box-shadow:0 0 0 red;}
+  50% { box-shadow:0 0 15px red; }
+  100% { box-shadow:0 0 0 red; }
+}
+</style>
