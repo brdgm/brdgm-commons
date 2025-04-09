@@ -59,10 +59,9 @@ export default defineComponent({
       input.select()
     },
     suppressInvalidKeys(event: KeyboardEvent) : void {
-      const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab', 'Enter', ' ']
+      const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'Delete', 'Tab', 'Enter', ' ', '-', '+']
       const isNumberKey = event.key >= '0' && event.key <= '9'
-      const isPlusKey = event.key == '+'
-      if (!isNumberKey && !isPlusKey && !allowedKeys.includes(event.key)) {
+      if (!isNumberKey && !allowedKeys.includes(event.key)) {
         event.preventDefault()
       }
     },
@@ -78,16 +77,23 @@ export default defineComponent({
   }
 })
 
-const digitsPlusWhitespaceRegex = /^(\d|\+|\s)*$/;
+const digitsOperatorsWhitespaceRegex = /^([\d+\-\s])*$/;
 
-function evaluateNumberOrSum(stringValue : string|undefined) : number|undefined {
-  if (stringValue != undefined && stringValue.trim() != '' && digitsPlusWhitespaceRegex.test(stringValue)) {
-    return stringValue.split('+')
-        .map(value => value.trim())
-        .map(value => value == '' ? 0 : parseInt(value))
-        .reduce((acc, value) => acc + value, 0)
+function evaluateNumberOrSum(stringValue: string | undefined): number | undefined {
+  if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
+    try {
+      // Evaluate the expression safely
+      return stringValue
+        .replace(/\s+/g, '') // Remove all whitespace from the string
+        .split(/(?=[+-])/) // Split by operators while preserving them
+        .map(value => parseInt(value, 10)) // Convert each part to a number
+        .reduce((acc, value) => acc + value, 0); // Sum up all parts
+    }
+    catch {
+      return undefined;
+    }
   }
-  return undefined
+  return undefined;
 }
 </script>
 

@@ -11,18 +11,26 @@
       </tr>
       <tr>
         <th scope="row">
-          Amount #1
+          Amount #1 (-10 .. 10)
         </th>
         <td v-for="i of playerCount" :key="i">
-          <ScoringTextInput v-model="amount.amount1[i-1]" :max="10"/>
+          <ScoringTextInput v-model="amount.amount1[i-1]" :min="-10" :max="10"/>
         </td>
       </tr>
       <tr>
         <th scope="row">
-          Amount #2
+          Amount #2 (0 .. 9999)
         </th>
         <td v-for="i of playerCount" :key="i">
           <ScoringTextInput v-model="amount.amount2[i-1]"/>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          Amount #3 (-999 .. 999)
+        </th>
+        <td v-for="i of playerCount" :key="i">
+          <ScoringTextInput v-model="amount.amount3[i-1]" :min="-999" :max="999"/>
         </td>
       </tr>
       <tr>
@@ -52,7 +60,8 @@ export default defineComponent({
 
     const amount = ref({
       amount1: [],
-      amount2: []
+      amount2: [],
+      amount3: [],
     })
 
     const playerCount = 2
@@ -64,7 +73,8 @@ export default defineComponent({
       const result = []
       for (let i=0; i<this.playerCount; i++) {
         result[i] = this.toNumber(this.amount.amount1[i])
-            + this.toNumber(this.amount.amount2[i])
+          + this.toNumber(this.amount.amount2[i])
+          + this.toNumber(this.amount.amount3[i])
       }
       return result
     },

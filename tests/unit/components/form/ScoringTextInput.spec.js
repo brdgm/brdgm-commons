@@ -15,11 +15,11 @@ describe('ScoringTextInput.vue', () => {
     const wrapper = mount(ScoringTextInput)
     const input = wrapper.find('input')
 
-    await input.setValue('5+10')
+    await input.setValue('5+10-1')
     await input.trigger('change')
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([15])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([14])
   })
 
   it('emits the max value when input value is > max', async () => {
@@ -33,6 +33,19 @@ describe('ScoringTextInput.vue', () => {
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
     expect(wrapper.emitted('update:modelValue')[0]).toEqual([20])
+  })
+
+  it('emits the min value when input value is < min', async () => {
+    const wrapper = mount(ScoringTextInput, {
+      props: { modelValue: -10, min: -20 }
+    })
+    const input = wrapper.find('input')
+
+    await input.setValue('-25')
+    await input.trigger('change')
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([-20])
   })
 
   it('emits undefined for invalid input', async () => {
@@ -92,10 +105,10 @@ describe('ScoringTextInput.vue', () => {
     const wrapper = mount(ScoringTextInput)
     const input = wrapper.find('input')
 
-    await input.setValue('  5  +  10  ')
+    await input.setValue('  5  +  10 - 2  ')
     await input.trigger('change')
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy()
-    expect(wrapper.emitted('update:modelValue')[0]).toEqual([15])
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([13])
   })
 })
