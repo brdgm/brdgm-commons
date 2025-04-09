@@ -13,7 +13,7 @@ describe('toNumber', () => {
   })
 
   it('should return 0 when undefined is passed', () => {
-    expect(toNumber(undefined)).to.equal(0)
+    expect(toNumber()).to.equal(0)
   })
 
   it('should return 0 when null is passed', () => {
