@@ -98,22 +98,28 @@ function evaluateNumberOrSum(stringValue: string | undefined): number | undefine
 </script>
 
 <style lang="scss" scoped>
+input {
+  border: 1px solid #999;
+  padding: 2px;
+}
 .glow1 {
   animation-name: glow1;
-  animation-duration: 0.25s;
+  animation-duration: 0.3s;
+  will-change: box-shadow;
 }
 .glow2 {
   animation-name: glow2;
-  animation-duration: 0.25s;
+  animation-duration: 0.3s;
+  will-change: box-shadow;
 }
 @keyframes glow1 {
-  0% { box-shadow:0 0 0 red;}
-  50% { box-shadow:0 0 15px red; }
-  100% { box-shadow:0 0 0 red; }
+  0% { box-shadow: 0 0 0 red; }
+  50% { box-shadow: 0 0 10px red; }
+  100% { box-shadow: 0 0 0 red; }
 }
 @keyframes glow2 {
-  0% { box-shadow:0 0 0 red;}
-  50% { box-shadow:0 0 15px red; }
-  100% { box-shadow:0 0 0 red; }
+  0% { box-shadow: 0 0 0 red; }
+  50% { box-shadow: 0 0 10px red; }
+  100% { box-shadow: 0 0 0 red; }
 }
 </style>
