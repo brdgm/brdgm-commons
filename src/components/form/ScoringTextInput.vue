@@ -82,9 +82,21 @@ const digitsOperatorsWhitespaceRegex = /^([\d+\-\s])*$/;
 function evaluateNumberOrSum(stringValue: string | undefined): number | undefined {
   if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
     try {
+      // Remove all whitespace from the string
+      let sanitizedString = stringValue.replace(/\s+/g, '');
+
+      // Remove trailing "+" or "-"
+      if (sanitizedString.endsWith('+') || sanitizedString.endsWith('-')) {
+        sanitizedString = sanitizedString.slice(0, -1);
+      }
+
+      // If the sanitized string is empty after removing trailing operators, return undefined
+      if (sanitizedString === '') {
+        return undefined;
+      }
+
       // Evaluate the expression safely
-      return stringValue
-        .replace(/\s+/g, '') // Remove all whitespace from the string
+      return sanitizedString
         .split(/(?=[+-])/) // Split by operators while preserving them
         .map(value => parseInt(value, 10)) // Convert each part to a number
         .reduce((acc, value) => acc + value, 0); // Sum up all parts
