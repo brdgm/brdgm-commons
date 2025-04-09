@@ -14,7 +14,7 @@
           Amount #1
         </th>
         <td v-for="i of playerCount" :key="i">
-          <ScoringTextInput v-model="amount.amount1[i-1]"/>
+          <ScoringTextInput v-model="amount.amount1[i-1]" :max="10"/>
         </td>
       </tr>
       <tr>
@@ -38,10 +38,9 @@
 </template>
 
 <script lang="ts">
-import ScoringTextInput from '@/components/form/ScoringTextInput.vue'
-import { ref } from 'vue'
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import ScoringTextInput from '@/components/form/ScoringTextInput.vue'
 
 export default defineComponent({
   name: 'FormTest',
@@ -82,7 +81,6 @@ export default defineComponent({
   }
 })
 </script>
-
 
 <style lang="scss" scoped>
 th, td {

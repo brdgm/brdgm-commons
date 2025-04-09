@@ -22,6 +22,19 @@ describe('ScoringTextInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')[0]).toEqual([15])
   })
 
+  it('emits the max value when input value is > max', async () => {
+    const wrapper = mount(ScoringTextInput, {
+      props: { modelValue: 10, max: 20 }
+    })
+    const input = wrapper.find('input')
+
+    await input.setValue('25')
+    await input.trigger('change')
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')[0]).toEqual([20])
+  })
+
   it('emits undefined for invalid input', async () => {
     const wrapper = mount(ScoringTextInput)
     const input = wrapper.find('input')
