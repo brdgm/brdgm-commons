@@ -1,5 +1,6 @@
 <template>
-  <input type="text" v-model="stringValue" @change="inputChange" @focus="inputSelectAll" @keydown="suppressInvalidKeys"
+  <input type="text" v-model="stringValue"
+      @change="inputChange" @focus="inputSelectAll" @keydown="suppressInvalidKeys"
       :class="{glow1: glow==1, glow2: glow==2}"/>
 </template>
 
