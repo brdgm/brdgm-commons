@@ -49,6 +49,7 @@
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import ScoringTextInput from '@/components/form/ScoringTextInput.vue'
+import toNumber from '@/util/form/toNumber'
 
 export default defineComponent({
   name: 'FormTest',
@@ -72,21 +73,11 @@ export default defineComponent({
     total() : number[] {
       const result = []
       for (let i=0; i<this.playerCount; i++) {
-        result[i] = this.toNumber(this.amount.amount1[i])
-          + this.toNumber(this.amount.amount2[i])
-          + this.toNumber(this.amount.amount3[i])
+        result[i] = toNumber(this.amount.amount1[i])
+          + toNumber(this.amount.amount2[i])
+          + toNumber(this.amount.amount3[i])
       }
       return result
-    },
-  },
-  methods: {
-    toNumber(value? : number) {
-      if (typeof value == 'string') {
-        return 0
-      }
-      else {
-        return value ?? 0
-      }
     }
   }
 })
