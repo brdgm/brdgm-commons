@@ -1,5 +1,5 @@
 <template>
-  <input type="text" v-model="stringValue"
+  <input type="text" v-model="stringValue" inputmode="numeric"
       @input="onInput" @change="onChange" @focus="inputSelectAll" @keydown="suppressInvalidKeys"
       :class="{glow1: glow==1, glow2: glow==2}"/>
 </template>
