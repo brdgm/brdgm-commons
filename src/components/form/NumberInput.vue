@@ -104,7 +104,7 @@ export default defineComponent({
 })
 
 const digitsOperatorsWhitespaceRegex = /^([\d+\-\s])*$/
-const digitsOnlyRegex = /^\-?\d+$/
+const digitsOnlyRegex = /^-?\d+$/
 
 function evaluateNumberOrSum(stringValue: string | undefined): number | undefined {
   if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
