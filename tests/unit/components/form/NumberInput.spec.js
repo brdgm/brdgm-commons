@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import { mount } from '@vue/test-utils'
-import ScoringTextInput from '@/components/form/ScoringTextInput.vue'
+import NumberInput from '@/components/form/NumberInput.vue'
 
-describe('ScoringTextInput.vue', () => {
+describe('NumberInput.vue', () => {
   it('renders correctly with initial modelValue', () => {
-    const wrapper = mount(ScoringTextInput, {
+    const wrapper = mount(NumberInput, {
       props: { modelValue: 10 }
     })
     const input = wrapper.find('input')
@@ -12,7 +12,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('emits the correct value when input changes', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('5+10-1')
@@ -23,7 +23,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('emits the max value when input value is > max', async () => {
-    const wrapper = mount(ScoringTextInput, {
+    const wrapper = mount(NumberInput, {
       props: { modelValue: 10, max: 20 }
     })
     const input = wrapper.find('input')
@@ -36,7 +36,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('emits the min value when input value is < min', async () => {
-    const wrapper = mount(ScoringTextInput, {
+    const wrapper = mount(NumberInput, {
       props: { modelValue: -10, min: -20 }
     })
     const input = wrapper.find('input')
@@ -49,7 +49,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('emits undefined for invalid input', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('invalid')
@@ -60,7 +60,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('suppresses invalid keys', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     const event = new KeyboardEvent('keydown', { key: 'a', cancelable: true })
@@ -70,7 +70,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('allows valid keys', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     const event = new KeyboardEvent('keydown', { key: '5', cancelable: true })
@@ -80,7 +80,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('selects all text on focus', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('123')
@@ -91,7 +91,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('handles empty input gracefully', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('')
@@ -102,7 +102,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('handles input with extra spaces', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('  5  +  10 - 2  ')
@@ -113,7 +113,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('+ at end of string', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('5+2+')
@@ -124,7 +124,7 @@ describe('ScoringTextInput.vue', () => {
   })
 
   it('single -', async () => {
-    const wrapper = mount(ScoringTextInput)
+    const wrapper = mount(NumberInput)
     const input = wrapper.find('input')
 
     await input.setValue('-')
