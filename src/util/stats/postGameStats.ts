@@ -28,9 +28,6 @@ export default function(data: object, formsURL?:string, fieldMapping?: string) :
     body: formData,
     mode: 'no-cors' // Google Forms requires no-cors mode
   })
-  .then(() => {
-    console.debug('Game stats posted successfully')
-  })
   .catch((error) => {
     console.error(`Failed to post game stats to ${formsURL}: `, error)
   })

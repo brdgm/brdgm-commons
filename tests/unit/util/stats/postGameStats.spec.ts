@@ -230,23 +230,4 @@ describe('util/stats/postGameStats', () => {
     
     consoleSpy.mockRestore()
   })
-
-  it('should log success message on successful post', async () => {
-    const consoleSpy = vi.spyOn(console, 'debug').mockImplementation(() => {})
-    const mockFetch = vi.fn().mockResolvedValue({ ok: true })
-    global.fetch = mockFetch
-
-    const data = { score: 100 }
-    const formsURL = 'https://docs.google.com/forms/test'
-    const fieldMapping = 'score:entry.111'
-    
-    postGameStats(data, formsURL, fieldMapping)
-    
-    await new Promise(resolve => setTimeout(resolve, 0))
-    
-    expect(mockFetch).toHaveBeenCalledOnce()
-    expect(consoleSpy).toHaveBeenCalledWith('Game stats posted successfully')
-    
-    consoleSpy.mockRestore()
-  })
 })
