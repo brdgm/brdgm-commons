@@ -25,11 +25,13 @@ export default function createRouterMatomoTracking(routes: Readonly<RouteRecordR
   router.afterEach(to => {
     if (_paq) {
       // track page view with matomo
-      _paq.push(['deleteCustomDimension', 1])
-      _paq.push(['setCustomDimension', 1, appDeployName])  // app
-      _paq.push(['setCustomDimension', 2, `${appDeployName} ${appVersion}`])  // appVersion
-      _paq.push(['setCustomUrl', `/${appDeployName}${to.fullPath}`])
-      _paq.push(['trackPageView'])
+      _paq.push(
+        ['deleteCustomDimension', 1],
+        ['setCustomDimension', 1, appDeployName],  // app
+        ['setCustomDimension', 2, `${appDeployName} ${appVersion}`],  // appVersion
+        ['setCustomUrl', `/${appDeployName}${to.fullPath}`],
+        ['trackPageView']
+      )
     }
   })
   return router

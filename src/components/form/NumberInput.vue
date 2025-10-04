@@ -110,7 +110,7 @@ function evaluateNumberOrSum(stringValue: string | undefined): number | undefine
   if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
     try {
       // Remove all whitespace from the string
-      let sanitizedString = stringValue.replace(/\s+/g, '')
+      let sanitizedString = stringValue.replaceAll(/\s+/g, '')
 
       // Remove trailing "+" or "-"
       if (sanitizedString.endsWith('+') || sanitizedString.endsWith('-')) {

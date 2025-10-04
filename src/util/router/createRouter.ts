@@ -13,7 +13,7 @@ export default function createRouter(routes: Readonly<RouteRecordRaw[]>,
     localStorageKey : string, 
     homeRouteName : string) : Router {
 
-  if (!routes.find(item => item.name==homeRouteName)) {
+  if (!routes.some(item => item.name==homeRouteName)) {
     throw new Error(`Home route not found: ${homeRouteName}`)
   }
 
