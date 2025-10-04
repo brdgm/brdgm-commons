@@ -12,10 +12,10 @@ export default function randomEnumDifferentValue<T extends Record<string, unknow
     throw new Error(`Unable to randomly choose a different value from an enum with a single value.`)
   }
   const newValue = randomEnum(anEnum)
-  if (!currentValue.includes(newValue)) {
-    return newValue
+  if (currentValue.includes(newValue)) {
+    return randomEnumDifferentValue(anEnum, ...currentValue)
   }
   else {
-    return randomEnumDifferentValue(anEnum, ...currentValue)
+    return newValue
   }
 }

@@ -3,7 +3,7 @@
  * @param array Array
  * @param item Item
  */
-export default function<T>(array : T[], item : T) : void {
+export default function toggleArrayItem<T>(array : T[], item : T) : void {
   const index = array.indexOf(item)
   if (index >= 0) {
     array.splice(index, 1)
