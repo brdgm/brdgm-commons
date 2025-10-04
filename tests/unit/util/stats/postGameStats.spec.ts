@@ -8,7 +8,7 @@ describe('util/stats/postGameStats', () => {
   beforeEach(() => {
     // Mock fetch globally
     mockFetch = vi.fn().mockResolvedValue({ ok: true })
-    global.fetch = mockFetch
+    globalThis.fetch = mockFetch
     vi.clearAllMocks()
   })
 

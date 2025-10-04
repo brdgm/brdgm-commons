@@ -5,7 +5,7 @@
  * @param formsURL URL for the Google Form to post data to. If not set, not data is posted.
  * @param fieldMapping Field mapping string to map data properties to form entry IDs with syntax `fieldName:entryID;fieldName2:entryID2`.
  */
-export default function(data: object, formsURL?:string, fieldMapping?: string) : void {
+export default function postGameStats(data: object, formsURL?:string, fieldMapping?: string) : void {
   if (!formsURL) {
     // skip silently if no URL is configured
     return
@@ -15,12 +15,12 @@ export default function(data: object, formsURL?:string, fieldMapping?: string) :
   const formData = new FormData()
 
   // Map data properties to form field names
-  Object.entries(data).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(data)) {
     const fieldName = mapping.get(key)
     if (fieldName && value !== undefined && value !== null) {
       formData.append(fieldName, String(value))
     }
-  })
+  }
 
   // Post data asynchronously
   fetch(formsURL, {
@@ -36,12 +36,12 @@ export default function(data: object, formsURL?:string, fieldMapping?: string) :
 function parseFieldMapping(fieldMapping?: string) : Map<string, string> {
   const map = new Map<string, string>()
   if (fieldMapping) {
-    fieldMapping.split(';').forEach((pair: string) => {
+    for (const pair of fieldMapping.split(';')) {
       const [key, value] = pair.split(':')
       if (key && value) {
         map.set(key, value)
       }
-    })
+    }
   }
   return map
 }

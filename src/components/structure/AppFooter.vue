@@ -61,7 +61,7 @@ export default defineComponent({
   },
   data() {
     return {
-      currentBaseFontSize: this.baseFontSize ?? 1.0
+      currentBaseFontSize: this.baseFontSize ?? 1
     }
   },
   computed: {

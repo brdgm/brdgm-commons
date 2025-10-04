@@ -4,7 +4,7 @@
  * @param value Value to convert
  * @return Number value
  */
-export default function (value? : unknown) : number {
+export default function toNumber(value? : unknown) : number {
   if (typeof value == 'number') {
     return value
   }

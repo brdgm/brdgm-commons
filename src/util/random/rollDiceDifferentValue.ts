@@ -11,10 +11,10 @@ export default function rollDiceDifferentValue(maxValue: number, ...currentValue
     throw new Error(`Unable to roll a dice ${maxValue} with a different value.`)
   }
   const newNumber = rollDice(maxValue)
-  if (!currentValue.includes(newNumber)) {
-    return newNumber
+  if (currentValue.includes(newNumber)) {
+    return rollDiceDifferentValue(maxValue, ...currentValue)
   }
   else {
-    return rollDiceDifferentValue(maxValue, ...currentValue)
+    return newNumber
   }
 }

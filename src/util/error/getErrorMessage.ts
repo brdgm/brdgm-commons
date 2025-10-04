@@ -6,7 +6,7 @@ import TranslatableError from './TranslatableError'
  * @param translateError Translate error message
  * @returns Error message
  */
-export default function(err : unknown, translateError: (error : TranslatableError) => string) : string {
+export default function getErrorMessage(err : unknown, translateError: (error : TranslatableError) => string) : string {
   let message
   if (err instanceof TranslatableError) {
     message = translateError(err)

@@ -52,9 +52,9 @@ export default defineComponent({
     onInput() : void {
       const enteredValue = this.stringValue?.trim() ?? ''
       if (digitsOnlyRegex.test(enteredValue)) {
-        const intValue = parseInt(enteredValue)
+        const intValue = Number.parseInt(enteredValue)
         if (intValue >= this.min && intValue <= this.max) {
-          this.$emit('update:modelValue', parseInt(enteredValue))
+          this.$emit('update:modelValue', Number.parseInt(enteredValue))
         }
       }
       else if (enteredValue.length == 0) {
@@ -110,7 +110,7 @@ function evaluateNumberOrSum(stringValue: string | undefined): number | undefine
   if (stringValue != undefined && stringValue.trim() != '' && digitsOperatorsWhitespaceRegex.test(stringValue)) {
     try {
       // Remove all whitespace from the string
-      let sanitizedString = stringValue.replace(/\s+/g, '')
+      let sanitizedString = stringValue.replaceAll(/\s+/g, '')
 
       // Remove trailing "+" or "-"
       if (sanitizedString.endsWith('+') || sanitizedString.endsWith('-')) {
@@ -125,7 +125,7 @@ function evaluateNumberOrSum(stringValue: string | undefined): number | undefine
       // Evaluate the expression safely
       return sanitizedString
         .split(/(?=[+-])/) // Split by operators while preserving them
-        .map(value => parseInt(value, 10)) // Convert each part to a number
+        .map(value => Number.parseInt(value, 10)) // Convert each part to a number
         .reduce((acc, value) => acc + value, 0) // Sum up all parts
     }
     catch {

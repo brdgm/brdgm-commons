@@ -6,20 +6,20 @@ describe('util/random/randomEnumMultiDifferentValue', () => {
     const values = randomEnumMultiDifferentValue(IntEnum, 2)
 
     expect(values.length).to.eq(2)
-    values.forEach((value,index) => {
+    for (const [index, value] of values.entries()) {
       expect([1,2,3,4].includes(value)).to.true
       expect(values.toSpliced(index, 1).includes(value)).to.false
-    })
+    }
   })
 
   it('string enum', () => {
     const values = randomEnumMultiDifferentValue(StringEnum, 3)
 
     expect(values.length).to.eq(3)
-    values.forEach((value,index) => {
+    for (const [index, value] of values.entries()) {
       expect(['one','two','three','four'].includes(value)).to.true
       expect(values.toSpliced(index, 1).includes(value)).to.false
-    })
+    }
   })
 })
 

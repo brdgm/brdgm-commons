@@ -6,9 +6,9 @@ describe('util/random/rollDiceMultiDifferentValue', () => {
     const values = rollDiceMultiDifferentValue(6, 3)
 
     expect(values.length).to.eq(3)
-    values.forEach((value,index) => {
+    for (const [index, value] of values.entries()) {
       expect([1,2,3,4,5,6].includes(value)).to.true
       expect(values.toSpliced(index, 1).includes(value)).to.false
-    })
+    }
   })
 })
