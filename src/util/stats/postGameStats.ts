@@ -15,12 +15,12 @@ export default function postGameStats(data: object, formsURL?:string, fieldMappi
   const formData = new FormData()
 
   // Map data properties to form field names
-  Object.entries(data).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(data)) {
     const fieldName = mapping.get(key)
     if (fieldName && value !== undefined && value !== null) {
       formData.append(fieldName, String(value))
     }
-  })
+  }
 
   // Post data asynchronously
   fetch(formsURL, {
@@ -36,12 +36,12 @@ export default function postGameStats(data: object, formsURL?:string, fieldMappi
 function parseFieldMapping(fieldMapping?: string) : Map<string, string> {
   const map = new Map<string, string>()
   if (fieldMapping) {
-    fieldMapping.split(';').forEach((pair: string) => {
+    for (const pair of fieldMapping.split(';')) {
       const [key, value] = pair.split(':')
       if (key && value) {
         map.set(key, value)
       }
-    })
+    }
   }
   return map
 }

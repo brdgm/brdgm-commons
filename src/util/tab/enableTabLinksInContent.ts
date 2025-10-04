@@ -9,7 +9,7 @@ import { Tab } from 'bootstrap'
  * @param element Parent element which contains both the tab links and tab panes
  */
 export default function enableTabLinksInContent(parent : HTMLElement) : void {
-  parent.querySelectorAll('a[data-custom-toggle="tab"]').forEach(anchor => {
+  for (const anchor of parent.querySelectorAll('a[data-custom-toggle="tab"]')) {
     anchor.addEventListener('click', event => {
       event.preventDefault()
       const target = anchor.getAttribute('href')
@@ -20,5 +20,5 @@ export default function enableTabLinksInContent(parent : HTMLElement) : void {
         }
       }
     })
-  })
+  }
 }
