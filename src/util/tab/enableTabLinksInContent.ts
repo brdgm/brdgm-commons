@@ -8,7 +8,7 @@ import { Tab } from 'bootstrap'
  * </pre>
  * @param element Parent element which contains both the tab links and tab panes
  */
-export default function(parent : HTMLElement) : void {
+export default function enableTabLinksInContent(parent : HTMLElement) : void {
   parent.querySelectorAll('a[data-custom-toggle="tab"]').forEach(anchor => {
     anchor.addEventListener('click', event => {
       event.preventDefault()

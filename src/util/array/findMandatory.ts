@@ -4,7 +4,7 @@
  * @param accept Accept method
  * @returns Item
  */
-export default function<T>(array : T[], accept: (item : T) => boolean) : T {
+export default function findMandatory<T>(array : T[], accept: (item : T) => boolean) : T {
   if (array.length == 0) {
     throw new Error("Array is empty.")
   }

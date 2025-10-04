@@ -15,7 +15,7 @@ declare let _paq: any  // eslint-disable-line @typescript-eslint/no-explicit-any
  * @param homeRouteName Name of the home route
  * @returns Router
  */
-export default function(routes: Readonly<RouteRecordRaw[]>,
+export default function createRouterMatomoTracking(routes: Readonly<RouteRecordRaw[]>,
     localStorageKey : string,
     appDeployName : string,
     appVersion : string,

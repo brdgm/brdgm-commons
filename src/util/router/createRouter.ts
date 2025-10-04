@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router'
+import { createRouter as createRouterVue, createWebHashHistory, Router, RouteRecordRaw } from 'vue-router'
 
 /**
  * Create a vue router with web hash history.
@@ -9,7 +9,7 @@ import { createRouter, createWebHashHistory, Router, RouteRecordRaw } from 'vue-
  * @param homeRouteName Name of the home route
  * @returns Router
  */
-export default function(routes: Readonly<RouteRecordRaw[]>,
+export default function createRouter(routes: Readonly<RouteRecordRaw[]>,
     localStorageKey : string, 
     homeRouteName : string) : Router {
 
@@ -17,7 +17,7 @@ export default function(routes: Readonly<RouteRecordRaw[]>,
     throw new Error(`Home route not found: ${homeRouteName}`)
   }
 
-  const router = createRouter({
+  const router = createRouterVue({
     history: createWebHashHistory(),
     routes
   })

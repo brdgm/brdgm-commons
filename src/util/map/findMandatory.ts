@@ -4,7 +4,7 @@
  * @param key Key
  * @returns Item
  */
-export default function<K,V>(map : Map<K,V>, key : K) : V {  
+export default function findMandatory<K,V>(map : Map<K,V>, key : K) : V {  
   const result = map.get(key)
   if (!result) {
     throw new Error("No item with key: " + key)

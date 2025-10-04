@@ -5,7 +5,7 @@
  * @param formsURL URL for the Google Form to post data to. If not set, not data is posted.
  * @param fieldMapping Field mapping string to map data properties to form entry IDs with syntax `fieldName:entryID;fieldName2:entryID2`.
  */
-export default function(data: object, formsURL?:string, fieldMapping?: string) : void {
+export default function postGameStats(data: object, formsURL?:string, fieldMapping?: string) : void {
   if (!formsURL) {
     // skip silently if no URL is configured
     return
