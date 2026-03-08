@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 
 /**
  * Technically this is a text input, but it provides advanced features to enter number values:
@@ -41,6 +41,9 @@ export default defineComponent({
     if (props.modelValue) {
       stringValue.value = props.modelValue.toString()
     }
+    watch(() => props.modelValue, (newValue) => {
+      stringValue.value = newValue?.toString()
+    })
     const glow = ref(0)
     return { stringValue, glow }
   },
