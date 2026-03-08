@@ -133,4 +133,26 @@ describe('NumberInput.vue', () => {
     expect(wrapper.emitted('update:modelValue')).to.be.ok
     expect(wrapper.emitted('update:modelValue')[0]).to.eql([undefined])
   })
+
+  it('updates displayed value when modelValue prop changes externally', async () => {
+    const wrapper = mount(NumberInput, {
+      props: { modelValue: 5 }
+    })
+    const input = wrapper.find('input')
+    expect(input.element.value).to.equal('5')
+
+    await wrapper.setProps({ modelValue: 8 })
+    expect(input.element.value).to.equal('8')
+  })
+
+  it('clears displayed value when modelValue prop is set to undefined', async () => {
+    const wrapper = mount(NumberInput, {
+      props: { modelValue: 5 }
+    })
+    const input = wrapper.find('input')
+    expect(input.element.value).to.equal('5')
+
+    await wrapper.setProps({ modelValue: undefined })
+    expect(input.element.value).to.equal('')
+  })
 })
