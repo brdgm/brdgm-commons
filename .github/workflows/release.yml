@@ -81,7 +81,7 @@ jobs:
           git push
         shell: bash
 
-      - uses: release-drafter/release-drafter@v6
+      - uses: release-drafter/release-drafter@v7
         with:
           disable-autolabeler: true
           name: ${{ steps.package_json.outputs.version }}
