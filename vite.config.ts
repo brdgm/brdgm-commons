@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VueI18nPlugin({
-      include: [path.resolve(__dirname, './src/locales/**')],
+      include: [path.resolve(import.meta.dirname, './src/locales/**')],
       strictMessage: false
     }),
     // support older browsers
