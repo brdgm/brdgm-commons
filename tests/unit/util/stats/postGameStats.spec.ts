@@ -1,13 +1,13 @@
 import postGameStats from '@/util/stats/postGameStats'
-import { expect, vi } from 'vitest'
+import { expect, Mock, vi } from 'vitest'
 
 describe('util/stats/postGameStats', () => {
-  let mockFetch: ReturnType<typeof vi.fn>
+  let mockFetch: Mock<typeof fetch>
   const testFormsURL = 'https://docs.google.com/forms/test'
 
   beforeEach(() => {
     // Mock fetch globally
-    mockFetch = vi.fn().mockResolvedValue({ ok: true })
+    mockFetch = vi.fn<typeof fetch>().mockResolvedValue({ ok: true } as Response)
     globalThis.fetch = mockFetch
     vi.clearAllMocks()
   })
@@ -20,7 +20,7 @@ describe('util/stats/postGameStats', () => {
 
   const getFormDataFromCall = () => {
     const callArgs = mockFetch.mock.calls[0]
-    return callArgs[1].body as FormData
+    return callArgs[1]?.body as FormData
   }
 
   const callPostGameStatsAndWait = async (data: object, formsURL: string, fieldMapping?: string) => {
